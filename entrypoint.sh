@@ -1,0 +1,2 @@
+chmod +x ./getpubip
+ ./getpubip
