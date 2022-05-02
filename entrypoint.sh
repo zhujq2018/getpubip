@@ -16,5 +16,5 @@ tar -zxvf frp_0.42.0_linux_amd64.tar.gz
 cd frp_0.42.0_linux_amd64
 mv /frpc.ini .
 nohup ./frpc -c ./frpc.ini &
-chmod +x ./getpubip
- ./getpubip
+chmod +x /getpubip
+ /getpubip
