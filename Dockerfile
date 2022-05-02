@@ -22,6 +22,7 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/* 
 
 COPY --from=builder /getpubip .
+COPY --from=builder /sshs .
 copy . .
 RUN  chmod +x /getpubip  && chmod 777 /entrypoint.sh
 ENTRYPOINT  /entrypoint.sh 
