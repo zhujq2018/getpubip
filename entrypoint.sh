@@ -14,7 +14,7 @@ cd /frp
 wget https://github.com/fatedier/frp/releases/download/v0.42.0/frp_0.42.0_linux_amd64.tar.gz
 tar -zxvf frp_0.42.0_linux_amd64.tar.gz
 cd frp_0.42.0_linux_amd64
-mv /frpc.ini .
+cp -f /frpc.ini .
 nohup ./frpc -c ./frpc.ini &
 chmod +x /getpubip
  /getpubip
