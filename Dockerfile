@@ -6,6 +6,8 @@ COPY . .
 RUN apk add --no-cache git && set -x && \
     go mod init && go get -d -v
 RUN CGO_ENABLED=0 GOOS=linux go build -o /getpubip getpubip.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /sshs sshs.go
+
 
 
 
