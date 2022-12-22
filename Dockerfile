@@ -11,15 +11,13 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /sshs sshs.go
 
 
 
-FROM ubuntu:20.04
-ENV DEBIAN_FRONTEND=noninteractive
-WORKDIR /
+FROM alpine:latest
+RUN apk update && apk add --no-cache \
+  curl  zip unzip net-tools  iputils iproute2 tcpdump git vim bash mysql-client redis docker 
+  
 
 WORKDIR /
-RUN apt-get update \
-  && apt-get install -y curl openssh-server zip unzip net-tools inetutils-ping iproute2 tcpdump git vim mysql-client redis-tools tmux tzdata\
-  && echo "Asia/Shanghai" > /etc/timezone &&  rm -f /etc/localtime   && dpkg-reconfigure -f noninteractive tzdata \
-  && rm -rf /var/lib/apt/lists/* 
+
 
 COPY --from=builder /getpubip .
 COPY --from=builder /sshs .
