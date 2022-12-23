@@ -8,16 +8,11 @@ RUN apk add --no-cache git && set -x && \
 RUN CGO_ENABLED=0 GOOS=linux go build -o /getpubip getpubip.go
 RUN CGO_ENABLED=0 GOOS=linux go build -o /sshs sshs.go
 
-
-
-
 FROM docker:dind
 RUN apk update && apk add --no-cache \
   curl  zip unzip net-tools  iputils iproute2 tcpdump git vim bash mysql-client redis 
   
-
 WORKDIR /
-
 COPY --from=builder /getpubip .
 COPY --from=builder /sshs .
 copy . .
