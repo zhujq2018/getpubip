@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine3.13 as builder
+FROM golang:1.19.9-alpine3.17 as builder
 
 WORKDIR $GOPATH/src/getpubip
 COPY . .
