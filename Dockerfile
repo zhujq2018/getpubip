@@ -3,7 +3,7 @@ FROM golang:1.16-alpine3.13 as builder
 WORKDIR $GOPATH/src/getpubip
 COPY . .
 
-RUN apk add --no-cache git && set -x && go env -w GO111MODULE=off  && go get -d -v
+RUN apk add --no-cache git && set -x && go mod init  && go get -d -v
 RUN CGO_ENABLED=0 GOOS=linux go build -o /getpubip getpubip.go
 RUN CGO_ENABLED=0 GOOS=linux go build -o /sshs sshs.go
 
