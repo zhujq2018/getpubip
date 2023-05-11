@@ -13,6 +13,7 @@ import (
 const port = "80"
 const target = "127.0.0.1:2222"
 const v2proxy = "127.0.0.1:8080"
+const getpubip = "127.0.0.1:8088"
 
 type client struct {
 	listenChannel        chan bool // Channel that the client is listening on
@@ -229,7 +230,31 @@ func handleConnection(clientConn net.Conn) {
 		go io.Copy(server, clientConn)
 		io.Copy(clientConn, server)
 
-	} else {
+	} else if line == "GET / HTTP/1.1\r\n" {
+		server, err := net.Dial("tcp", getpubip)
+		if err != nil {
+			log.Println("error to connect to getpubip:", err)
+			return
+		}
+		str := line
+		for line, err = reader.ReadString('\n'); true; line, err = reader.ReadString('\n') {
+			if err != nil {
+				log.Println("Failed to read following lines", err)
+				return
+			}
+
+			str += line
+
+			if line == "\r\n" {
+				break
+			}
+		}
+
+		server.Write([]byte(str))
+		go io.Copy(server, clientConn)
+		io.Copy(clientConn, server)
+
+	}else {
 		fmt.Fprintf(clientConn, "HTTP/1.1 404 Not found\r\n")
 		fmt.Fprintf(clientConn, "Content-Type: text/plain\r\n")
 		fmt.Fprintf(clientConn, "Content-Length: 8\r\n\r\n")
