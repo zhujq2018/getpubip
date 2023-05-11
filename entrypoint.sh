@@ -3,7 +3,7 @@ export USER=root
 chmod +x /sshs
 chmod +x /getpubip
 nohup /sshs 0.0.0.0 2222 &
-nohup /getpubip  &
+#nohup /getpubip  &
 echo 'PS1='"'"'${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;35;35m\]\w\[\033[00m\]\$\033[1;32;32m\] '"'" >> /root/.bashrc
 
 mkdir -p /root/tail
