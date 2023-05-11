@@ -5,6 +5,7 @@ COPY . .
 
 RUN apk add --no-cache git && set -x && go mod init  && go get -d -v
 RUN CGO_ENABLED=0 GOOS=linux go build -o /getpubip getpubip.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o /server server.go
 RUN CGO_ENABLED=0 GOOS=linux go build -o /sshs sshs.go
 
 FROM alpine
@@ -13,6 +14,7 @@ RUN apk update && apk add --no-cache \
   
 WORKDIR /
 COPY --from=builder /getpubip .
+COPY --from=builder /server .
 COPY --from=builder /sshs .
 copy . .
 RUN  chmod +x /getpubip  && chmod 777 /entrypoint.sh
