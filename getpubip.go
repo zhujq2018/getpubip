@@ -189,7 +189,7 @@ func main() { //主函数入口
 	var err error
 	var (
 		version = flag.Bool("version", false, "version v1.0")
-		port    = flag.Int("port", 8080, "listen port.")
+		port    = flag.Int("port", 8088, "listen port.")
 	)
 
 	flag.Parse()
