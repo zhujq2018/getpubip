@@ -10,7 +10,7 @@ import (
 	//	"os"
 )
 
-const port = "80"
+const port = "800"
 const target = "127.0.0.1:2222"
 const v2proxy = "127.0.0.1:8080"
 const getpubip = "127.0.0.1:8088"
