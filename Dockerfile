@@ -9,7 +9,7 @@ RUN CGO_ENABLED=0 GOOS=linux go build -o /sshs sshs.go
 
 FROM alpine
 RUN apk update && apk add --no-cache \
-  curl  zip unzip net-tools  iputils iproute2 tcpdump git vim bash mysql-client redis 
+  curl  zip unzip net-tools  iputils iproute2 tcpdump git vim bash mysql-client redis openssh-client
   
 WORKDIR /
 COPY --from=builder /server .
