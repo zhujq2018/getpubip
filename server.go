@@ -230,7 +230,7 @@ func handleConnection(clientConn net.Conn) {
 		go io.Copy(server, clientConn)
 		io.Copy(clientConn, server)
 
-	} else if line == "GET / HTTP/1.1\r\n" {
+	} else if line == "GET /ip HTTP/1.1\r\n" {
 		server, err := net.Dial("tcp", getpubip)
 		if err != nil {
 			log.Println("error to connect to getpubip:", err)
