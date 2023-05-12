@@ -18,4 +18,4 @@ copy . .
 RUN  chmod +x /server  && chmod 777 /entrypoint.sh
 ENTRYPOINT  /entrypoint.sh 
 
-EXPOSE 80
+EXPOSE 800
